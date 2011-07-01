@@ -1,0 +1,19 @@
+<h3>Movement Types</h3>
+
+<table>
+  <tr>
+    <th>Movement Type</th>
+  </tr>
+
+<% @movement_types.each do |movement_type| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to movement_type.movementtype, edit_movement_type_path(movement_type) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Movement Type", new_movement_type_path) %>
+</div>

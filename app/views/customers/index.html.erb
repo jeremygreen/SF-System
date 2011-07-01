@@ -1,0 +1,23 @@
+<h3>Customers</h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to customer.name, edit_customer_path(customer) %></td>
+    <td><%= customer.phone %></td>
+    <td><%= customer.email %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Customer", new_customer_path) %>
+</div>

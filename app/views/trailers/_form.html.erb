@@ -1,0 +1,29 @@
+<%= form_for(@trailer) do |f| %>
+  <% if @trailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trailer.errors.count, "error") %> prohibited this trailer from being saved:</h2>
+
+      <ul>
+      <% @trailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Reference' %>:
+    <%= f.text_field :referencenumber %>
+  </div>
+  <div class="field">
+    <%= f.label :availability %>:
+    <%= f.check_box :availability %>
+  </div>
+  <div class="field">
+    <%= f.label :capacity %>:
+    <%= f.text_field :capacity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>&nbsp;<%= submit_tag 'Cancel' %>
+  </div>
+<% end %>

@@ -1,0 +1,179 @@
+<%= form_for @movement, :remote => true, do |f| %>
+  <% if @movement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+
+      <ul>
+      <% @movement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if edit_field(@movement.status, "scheduled") %>
+  <%= f.hidden_field :id %>
+  <div class="field">
+    <%= f.label :status %>:
+    <%= @movement.status.upcase %>
+  </div>
+  <%= f.hidden_field :status %>
+  <div class="field">
+    <%= f.label :customer_id %>:
+    <%= f.collection_select(:customer_id, Customer.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :movement_type_id %>:
+    <%= f.collection_select(:movement_type_id, MovementType.all, :id, :movementtype) %>
+  </div>
+  <div class="field">
+    <%= f.label :load_id %>:
+    <%= f.collection_select(:load_id, Load.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :movement_date %>:
+    <%= f.date_select :movement_date %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks %>
+    <%= f.text_area :remarks %>
+  </div>
+  <div id="curr_rate">
+    <%= render :partial => 'movements/updaterate', :object => @rate %>
+  </div>
+  <div id="override_rate" class="field">
+    <%= f.label :override_rate %>:
+    <%= f.text_field :override_rate %>
+  </div>
+  <% end %>
+
+
+  <% if edit_field(@movement.status, "assigned") %>
+  <%= f.hidden_field :id %>
+  <div class="field">
+    <%= f.label :status %>:
+    <%= @movement.status.upcase %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %>:
+    <%= @movement.customer.name %>
+  </div>
+  <div class="field">
+    <%= f.label :movement_type_id %>:
+    <%= @movement.movement_type.movementtype %>
+  </div>
+  <div class="field">
+    <%= f.label :load_id %>:
+    <%= @movement.load.name %>
+  </div>
+  <div class="field">
+    <%= f.label :movement_date %>:
+    <%= @movement.movement_date %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks %>
+    <%= @movement.remarks %>
+  </div>
+<br/><br/>
+  <div class="field">
+    <%= f.label :rate %>:
+    <%= @movement.rate %>
+  </div>
+  <div class="field">
+    <%= f.label :override_rate %>:
+    <%= f.text_field :override_rate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :movment_time %>:
+    <%= f.time_select :movment_time %>
+  </div>
+  <div class="field">
+    <%= f.label :driver_staff_id %>:
+    <%= f.collection_select(:driver_staff_id, Staff.all, :id, :full_name) %>
+  </div>
+  <div class="field">
+    <%= f.label :helper_staff_id %>:
+    <%= f.collection_select(:helper_staff_id, Staff.all, :id, :full_name) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Head' %>:
+    <%= f.collection_select(:head_equipment_id, @heads, :id, :full_equipment) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Trailer' %>:
+    <%= f.collection_select(:trailer_equipment_id,  @trailers, :id, :full_equipment) %>
+  </div>
+ <% end %>
+
+  <% if edit_field(@movement.status, "complete") %>
+  <%= f.hidden_field :id %>
+  <div class="field">
+    <%= f.label :status %>:
+    <%= @movement.status %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %>:
+    <%= @movement.customer.name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Movement Type' %>:
+    <%= @movement.movement_type.movementtype %>
+  </div>
+  <div class="field">
+    <%= f.label :load_id %>:
+    <%= @movement.load.name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Movement Date' %>:
+    <%= @movement.movement_date %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks %>
+    <%= @movement.remarks %>
+  </div>
+  <br/><br/>
+  <div class="field">
+    <%= f.label :rate %>:
+    <%= @movement.rate %>
+  </div>
+  <div class="field">
+    <%= f.label 'Override Rate+' %>:
+    <%= f.text_field :override_rate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :movment_time %>:
+    <%=  @movement.movment_time %>
+  </div>
+  <div class="field">
+    <%= f.label 'Head' %>:
+    <%=  @movement.head.referencenumber %>
+  </div>
+  <div class="field">
+    <%= f.label 'Trailer' %>:
+    <%=  @movement.trailer.referencenumber %>
+  </div>
+  <div class="field">
+    <%= f.label :driver_staff_id %>:
+    <%=  @movement.driver.surname %>
+  </div>
+  <div class="field">
+    <%= f.label :helper_staff_id %>:
+    <%=  @movement.helper.surname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waybill_number %>:
+    <%= f.text_field :waybill_number %>
+  </div>
+  <div class="field">
+    <%= f.label :seal_number %>:
+    <%= f.text_field :seal_number %>
+  </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit :class => 'button' %>&nbsp;<%= submit_tag 'Cancel', :class => 'button' %>
+  </div>
+<% end %>

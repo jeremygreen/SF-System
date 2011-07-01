@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SF System</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag "jquery.js","jquery-ui.custom.min.js","application.js" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="header">
+	<div id="container"> 
+		<div id="center" class="column"> 
+			<div id="title">SF SYSTEM</div>
+			<div id="menu">
+				<ul id="nav">
+				    <li><a href="#">Users</a>
+					    <ul>
+						    <% if current_user %>
+						        <li><%= link_to "Edit Profile", edit_user_path(current_user.id)%></li>
+					    		<li><%= link_to 'Logout', :logout %></li>
+							<% else %>
+					        	<li><%= link_to 'Register', new_user_path %></li>
+					        	<li><%= link_to 'Login', :login %></li>
+							<% end %>
+					    </ul>
+					</li>
+					<li><a href="#">Movements</a>
+						<ul>
+							<li><%= link_to 'New...', new_movement_path %>
+							<li><%= link_to 'Scheduled', movements_path(:status => 'scheduled') %></li>
+							<li><%= link_to 'Assigned',  movements_path(:status => 'assigned') %></li>
+							<li><%= link_to 'Complete',  movements_path(:status => 'complete') %></li>
+						</ul>
+					</li>
+					<li><a href="#">Pricing</a>
+						<ul>
+							<li><%= link_to 'Rates', rates_path %>
+						</ul>
+					</li>
+					<li><a href="#">Maintenance</a>
+						<ul>
+							<li><%= link_to 'Equipment', equipment_index_path %></li>
+							<li><%= link_to 'Calendar', calendar_path %></li>
+						</ul>
+					</li>
+					<li><a href="#">Admin</a>
+						<ul>
+							<li><%= link_to 'Customers', customers_path %></li>
+							<li><%= link_to 'Staff', staffs_path %></li>
+							<li><%= link_to 'Tasks', tasks_path %></li>
+							<li><%= link_to 'Loads', loads_path %></li>
+							<li><%= link_to 'Equipment', equipment_index_path %>
+							<li><%= link_to 'Equipment Type', equipment_types_path%>
+							<li><%= link_to 'Movement Type', movement_types_path %></li>
+						</ul>
+						<li><a href="#">Reporting</a>
+							<ul>
+						
+							<li><%= link_to 'Daily', daily_reports_path %></li>
+							<li><%= link_to 'Monthly', monthly_reports_path %></li>
+							</ul>
+						</li>
+					</li>	
+				</ul>
+			</div>
+
+			<div id="content">
+				
+				<% flash.each do |key, msg| %>
+				    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
+				    <%= content_tag :script, :type => "text/javascript" do -%>
+				        setTimeout("new Effect.Fade('notice_<%= key %>');", 15000);
+				    <% end %>
+				<% end %>
+				
+				<%= yield %>
+			</div>
+		</div> 
+ 
+		<div id="left" class="column"> 
+		</div> 
+ 
+		<div id="right" class="column"> 
+		</div> 
+ 
+	</div> 
+ 
+	<div id="footer"> 
+		<div id="copyright">Copyright TwoBitDesign 2011</div>
+	</div>
+			
+			
+			
+			
+</body>
+</html>

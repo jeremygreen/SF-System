@@ -1,0 +1,33 @@
+<h3>Movements - <%= get_status %></h3>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Type</th>
+    <th>Load</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Vehicle</th>
+    <th>Trailer</th>
+    <th>Driver</th>
+    <th>Remarks</th>
+    <th>Rate</th>
+    <th>Override</th>
+  </tr>
+
+<% @movements.each do |movement| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to movement.customer.name, edit_movement_path(movement) %></td>
+    <td><%= movement.movement_type.movementtype %></td>
+    <td><%= movement.load.name %></td>
+    <td><%= movement.movement_date %></td>
+    <td><%= movement.movment_time.strftime("%H:%M:%S") %></td>
+    <td><%= movement.head.referencenumber %></td>
+    <td><%= movement.trailer.referencenumber %></td>
+    <td><%= movement.driver.surname %></td>
+    <td><%= has_remarks(movement.remarks) %></td>
+    <td><%= movement.rate %></td>
+    <td><%= movement.override_rate %></td>
+  </tr>
+<% end %>
+</table>

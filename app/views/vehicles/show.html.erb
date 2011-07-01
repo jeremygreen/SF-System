@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Make:</b>
+  <%= @vehicle.make %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%= @vehicle.model %>
+</p>
+
+<p>
+  <b>Configuration:</b>
+  <%= @vehicle.configuration %>
+</p>
+
+<p>
+  <b>Licencenumber:</b>
+  <%= @vehicle.licencenumber %>
+</p>
+
+<p>
+  <b>Availability:</b>
+  <%= @vehicle.availability %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%= @vehicle.capacity %>
+</p>
+
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>

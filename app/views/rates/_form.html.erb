@@ -1,0 +1,33 @@
+<%= form_for(@rate) do |f| %>
+  <% if @rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rate.errors.count, "error") %> prohibited this rate from being saved:</h2>
+
+      <ul>
+      <% @rate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :customer_id %>:
+    <%= f.collection_select(:customer_id, Customer.all, :id, :name, {}, {:onchange => 'alert(this.options[this.selectedIndex].value);'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :load_id %>:
+    <%= f.collection_select(:load_id, Load.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :movement_type_id %>:
+    <%= f.collection_select(:movement_type_id, MovementType.all, :id, :movementtype) %>
+  </div>
+  <div class="field">
+    <%= f.label :rate %>:
+    <%= f.text_field :rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'button' %>&nbsp;<%= submit_tag 'Cancel', :class => 'button' %>
+  </div>
+<% end %>

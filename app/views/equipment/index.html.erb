@@ -1,0 +1,43 @@
+<h3>Listing Equipment</h3>
+
+<table>
+  <tr>
+    <th>Reference Number</th>
+    <th>Equipment Type</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Licence Number</th>
+    <th>Capacity</th>
+    <th>Availability</th>
+  </tr>
+
+
+<% @equipment.each do |equipment| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to equipment.referencenumber,  edit_equipment_path(equipment) %></td>
+    <td><%= equipment.equipment_type.equipmenttype %></td>
+    <td><%= equipment.make %></td>
+    <td><%= equipment.model %></td>
+    <td><%= equipment.licencenumber %></td>
+    <td><%= equipment.capacity %></td>
+    <td><%= render_boolean(equipment.availability) %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+<div id="align_center">
+	<%= @equipment.current_page %>
+	<% if @equipment.current_page < @equipment.total_pages %>
+   		<%= button_helper("Next", "#{equipment_index_path(@post)}?page=#{@equipment.current_page+1}")%>
+	<% end %>
+
+	<% if @equipment.current_page >= 2 %>
+   		<%= button_helper("Prev", "#{equipment_index_path(@post)}?page=#{@equipment.current_page-1}")%>
+	<% end %>
+</div>
+
+<p/>
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Equipment", new_equipment_path) %>
+</div>

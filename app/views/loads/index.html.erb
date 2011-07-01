@@ -1,0 +1,23 @@
+<h2>Loads</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Count</th>
+  </tr>
+
+<% @loads.each do |load| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to load.name, edit_load_path(load) %></td>
+    <td><%= load.size %></td>
+    <td><%= load.amount %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Load", new_load_path) %>
+</div>

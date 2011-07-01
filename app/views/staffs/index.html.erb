@@ -1,0 +1,41 @@
+<div id="listtitle">Staff</div>
+
+<table>
+  <tr>
+	<th>Staff Number</th>
+    <th>Forename</th>
+    <th>Surname</th>
+    <th>Task</th>
+    <% if can? :destroy, Staff %>
+      <th></th>
+    <% end %>
+  </tr>
+<% @staffs.each do |staff| %>
+  <tr class="<%= cycle("even", "odd") %>">
+	<td><%= link_to staff.staffnumber, edit_staff_path(staff) %></td>
+    <td><%= staff.forename %></td>
+    <td><%= staff.surname %></td>
+    <td><%= staff.task.task %></td>
+    <% if can? :destroy, @staff %>
+        <td><%= button_to "Delete", staff_path(staff), :method => :delete, :confirm => "Are you sure?" %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div id="align_center">
+	<% if @staffs.current_page < @staffs.total_pages %>
+   		<%= button_helper("Next", "#{staffs_path(@post)}?page=#{@staffs.current_page+1}")%>
+	<% end %>
+
+	<% if @staffs.current_page >= 2 %>
+   		<%= button_helper("Prev", "#{staffs_path(@post)}?page=#{@staffs.current_page-1}")%>
+	<% end %>
+</div>
+
+<br/>
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Staff", new_staff_path) %>
+</div>

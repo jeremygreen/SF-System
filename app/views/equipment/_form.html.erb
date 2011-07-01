@@ -1,0 +1,46 @@
+<%= form_for(@equipment) do |f| %>
+  <% if @equipment.errors.any? %>
+    <div id="error_explanation">
+       <h2><%= pluralize(@equipment.errors.count, "error") %> prohibited this equipment from being saved:</h2> 
+
+      <ul>
+      <% @equipment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Reference' %>:
+    <%= f.text_field :referencenumber %>
+  </div>
+  <div class="field">
+    <%= f.label 'Equipment Type' %>:
+    <%= f.collection_select(:equipment_type_id, EquipmentType.all, :id, :equipmenttype) %>
+  </div>
+  <div class="field">
+    <%= f.label :make %>:
+    <%= f.text_field :make %>
+  </div>
+  <div class="field">
+    <%= f.label :model %>:
+    <%= f.text_field :model %>
+  </div>
+  <div class="field">
+    <%= f.label 'Licence' %>:
+    <%= f.text_field :licencenumber %>
+  </div>
+  <div class="field">
+    <%= f.label :capacity %>:
+    <%= f.text_field :capacity %>
+  </div>
+  <div class="field">
+    <%= f.label :availability %>:
+    <%= f.check_box :availability %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'button' %>&nbsp;<%= submit_tag 'Cancel', :class => 'button' %>
+  </div>
+  </div>
+<% end %>

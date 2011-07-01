@@ -1,0 +1,19 @@
+<h3>List Equipment Types</h3>
+
+<table>
+  <tr>
+    <th>Type</th>
+  </tr>
+
+<% @equipment_types.each do |equipment_type| %>
+<tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to equipment_type.equipmenttype, edit_equipment_type_path(equipment_type) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Equipment Type", new_equipment_type_path) %>
+</div>

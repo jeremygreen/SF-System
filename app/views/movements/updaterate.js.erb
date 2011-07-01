@@ -1,0 +1,3 @@
+$("#curr_rate").html("<%= escape_javascript(render(:partial => "updaterate", :object => @rate)) %>");
+$("#rate_value").animate({ backgroundColor: "red" }, 0);
+$("#rate_value").animate({ backgroundColor: "#C3BFAD" }, 1000);

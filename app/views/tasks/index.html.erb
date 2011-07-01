@@ -1,0 +1,36 @@
+<h3>Tasks</h3>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <% if can? :destroy, Task %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to task.task, edit_task_path(task) %></td>
+    <% if can? :destroy, @task %>
+	    <td><%= button_to "Delete", task_path(task), :method => :delete, :confirm => "Are you sure?" %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div id="align_center">
+	<% if @tasks.current_page < @tasks.total_pages %>
+   		<%= button_helper("Next", "#{tasks_path(@post)}?page=#{@tasks.current_page+1}")%>
+	<% end %>
+
+	<% if @tasks.current_page >= 2 %>
+   		<%= button_helper("Prev", "#{tasks_path(@post)}?page=#{@tasks.current_page-1}")%>
+	<% end %>
+</div>
+
+<br />
+
+<div id="align_center" class="resetposition">
+<%= button_helper("Create New Task", new_task_path) %>
+</div>

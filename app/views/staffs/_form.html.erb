@@ -1,0 +1,34 @@
+<%= form_for(@staff) do |f| %>
+  <% if @staff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+
+      <ul>
+      <% @staff.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Staff Number' %>:
+    <%= f.text_field :staffnumber %>
+  </div>
+  <div class="field">
+    <%= f.label :forename %>:
+    <%= f.text_field :forename %>
+  </div>
+  <div class="field">
+    <%= f.label :surname %>:
+    <%= f.text_field :surname %>
+  </div>
+  <div class="field">
+    <%= f.label :task_id %>:
+    <%= f.collection_select(:task_id, Task.all, :id, :task) %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'button' %>&nbsp;<%= submit_tag 'Cancel', :class => 'button' %>
+  </div>
+<% end %>
+

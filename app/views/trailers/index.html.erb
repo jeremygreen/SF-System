@@ -1,0 +1,21 @@
+<h3>Trailers</h3>
+
+<table>
+  <tr>
+    <th>Reference</th>
+    <th>Availability</th>
+    <th>Capacity</th>
+  </tr>
+
+<% @trailers.each do |trailer| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to trailer.referencenumber, edit_trailer_path(trailer) %></td>
+    <td><%= trailer.availability %></td>
+    <td><%= trailer.capacity %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trailer', new_trailer_path %>

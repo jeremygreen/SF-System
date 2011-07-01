@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @load.name %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= @load.size %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @load.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_load_path(@load) %> |
+<%= link_to 'Back', loads_path %>

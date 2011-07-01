@@ -1,0 +1,76 @@
+<div id="show">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Waybill number:</b>
+  <%= @movement.waybill_number %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @movement.customer_id %>
+</p>
+
+<p>
+  <b>Movement type:</b>
+  <%= @movement.movement_type_id %>
+</p>
+
+<p>
+  <b>Load:</b>
+  <%= @movement.load_id %>
+</p>
+
+<p>
+  <b>Movement date:</b>
+  <%= @movement.movement_date %>
+</p>
+
+<p>
+  <b>Movment time:</b>
+  <%= @movement.movment_time %>
+</p>
+
+<p>
+  <b>Vehicle:</b>
+  <%= @movement.vehicle_id %>
+</p>
+
+<p>
+  <b>Trailer:</b>
+  <%= @movement.trailer_id %>
+</p>
+
+<p>
+  <b>Driver staff:</b>
+  <%= @movement.driver_staff_id %>
+</p>
+
+<p>
+  <b>Helper staff:</b>
+  <%= @movement.helper_staff_id %>
+</p>
+
+<p>
+  <b>Seal number:</b>
+  <%= @movement.seal_number %>
+</p>
+
+<p>
+  <b>Remarks:</b>
+  <%= @movement.remarks %>
+</p>
+
+<p>
+  <b>Rate:</b>
+  <%= @movement.rate %>
+</p>
+
+<p>
+  <b>Override rate:</b>
+  <%= @movement.override_rate %>
+</p>
+</div>
+
+<%= link_to 'Edit', edit_scheduled_movement_path(@movement) %> |
+<%= link_to 'Back', movements_path %>

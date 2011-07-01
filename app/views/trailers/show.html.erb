@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Referencenumber:</b>
+  <%= @trailer.referencenumber %>
+</p>
+
+<p>
+  <b>Availability:</b>
+  <%= @trailer.availability %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%= @trailer.capacity %>
+</p>
+
+
+<%= link_to 'Edit', edit_trailer_path(@trailer) %> |
+<%= link_to 'Back', trailers_path %>
